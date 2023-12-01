@@ -57,6 +57,39 @@ def solve_part_two(lines: list[str]) -> int:
     What is the sum of all of the calibration values?
 
     """
+    numbers_words = [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+    ]
+
+    values: list[int] = []
+
+    for line in lines:
+        numbers = []
+        for i, char in enumerate(line):
+            if char.isdigit():
+                numbers.append(char)
+                continue
+
+            for j, word in enumerate(numbers_words):
+                if line[i:].startswith(word):
+                    numbers.append(str(j + 1))
+                    break
+
+        coordinates = int(numbers[0] + numbers[-1])
+        values.append(coordinates)
+
+    return sum(values)
+
+
+def solve_part_two_with_regex(lines: list[str]) -> int:
     number_pairs = {
         "one": "1",
         "two": "2",
@@ -96,10 +129,12 @@ def main():
 
     sol_one = solve_part_one(lines)
     sol_two = solve_part_two(lines)
+    sol_two_regex = solve_part_two_with_regex(lines)
 
     print("Advent of Code 2023, Day 1")
     print("Part One:", sol_one)
     print("Part Two:", sol_two)
+    print("Part Two with RegEx:", sol_two_regex)
 
 
 if __name__ == "__main__":

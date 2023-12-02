@@ -1,5 +1,4 @@
-from functools import reduce
-import operator
+import math
 
 
 def read_rounds_as_dicts(line: str) -> list[dict]:
@@ -102,7 +101,7 @@ def solve_part_two(lines: list[str]):
             for key, value in round.items():
                 max_colors[key] = max(value, max_colors[key])
 
-        power = reduce(operator.mul, max_colors.values(), 1)
+        power = math.prod(max_colors.values())
         values.append(power)
 
     return sum(values)

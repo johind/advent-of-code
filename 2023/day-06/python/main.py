@@ -28,12 +28,11 @@ def find_number_of_working_seconds(max_time: int, top_distance: int):
 
     if discriminant >= 0:
         sqD = math.sqrt(discriminant)
-        epsilon = math.nextafter(0, 1)
 
-        root1 = (-max_time - sqD) / (-2)
-        root2 = (-max_time + sqD) / (-2)
+        ms_one = (-max_time - sqD) / (-2)
+        ms_two = (-max_time + sqD) / (-2)
 
-        return math.floor(root1 - epsilon) - math.ceil(root2 + epsilon) + 1
+        return math.floor(ms_one) - math.ceil(ms_two) + 1
     else:
         return 0
 
